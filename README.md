@@ -17,6 +17,10 @@ docker compose up --build
 
 配置源与夹具 → 触发 Run → 解析 / 去重 / 冲突隔离 → Canonical + 运行报告对账
 
+## 脱敏导出（pii_mask_export）
+
+配置字段脱敏规则（标题保留首尾打码 / 字段置空 / 哈希）→ 发起导出批次 → 写出脱敏 JSONL 文件 + 批次清单（业务键 + 脱敏摘要）→ 批次报告与 Canonical 列表、清单条数对账。导出只读主数据，Canonical 页保持明文。入口：`/exports` 页或 `POST /api/export/batches`。
+
 ## 种子说明
 
 - **Alpha Catalog（clean）**：JSON，三件干净货号，增量可落库。
@@ -34,5 +38,5 @@ Python 3.12 + FastAPI + SQLite；Vue 3 + Vite + Nginx。
 `lookback_backfill` / `schema_drift_guard` / `dead_letter_replay` / `webhook_push_source` /
 `source_authority_rank` / `tombstone_retire` / `scd2_history` / `watermark_commit_gate` /
 `field_map_transform` / `lineage_provenance` /
-`fixture_dir_harvest` / `bronze_silver_promote` / `category_metric_mart` / `pii_mask_export` /
+`fixture_dir_harvest` / `bronze_silver_promote` / `category_metric_mart` /
 `rpa_form_queue`
